@@ -1,8 +1,13 @@
 const express = require("express"); // import the NPM dependancy package
 
+const bodyParser  = require("body-parser");
+
 const app = express(); // initialise express() inside and write to the app variable
 
+app.use(bodyParser.json());
+
 require("./routes/userRoutes")(app); // import route module and pass your app
+
 
 const PORT = 5000; // choose what port on which to run the server
 
