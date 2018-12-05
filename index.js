@@ -1,6 +1,7 @@
 const express = require("express"); // import the NPM dependancy package
-const bodyParser  = require("body-parser");
+const bodyParser = require("body-parser");
 const cors = require("cors");
+const uniqid = require("uniqid");
 
 const app = express(); // initialise express() inside and write to the app variable
 

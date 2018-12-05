@@ -1,6 +1,7 @@
 const user_path = "./DB/users.json";
 const items_path = "./DB/items.json";
 const jsonfile = require("jsonfile");
+const uniqid = require("uniqid");
 
 module.exports = app => {
 
@@ -39,12 +40,11 @@ module.exports = app => {
         console.log("Item json returned");
     });
 
-    app.use(function (req, res, next) { res.header("Access-Control-Allow-Origin", "*"); res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); next(); });
-
     app.post('/items/new', (req, res) => {
         let { name, description, lat, lon } = req.body;
+        let id = uniqid();
         jsonfile.readFile(items_path, function (err, content) {
-            content.docs.push({ name, description, lat, lon });
+            content.docs.push({ id: id, name, description, lat, lon });
             console.log("added " + name + "to DB");
 
             jsonfile.writeFile(items_path, content, function (err) {
