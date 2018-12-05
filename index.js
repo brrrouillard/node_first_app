@@ -1,10 +1,11 @@
 const express = require("express"); // import the NPM dependancy package
-
 const bodyParser  = require("body-parser");
+const cors = require("cors");
 
 const app = express(); // initialise express() inside and write to the app variable
 
 app.use(bodyParser.json());
+app.use(cors());
 
 require("./routes/userRoutes")(app); // import route module and pass your app
 
